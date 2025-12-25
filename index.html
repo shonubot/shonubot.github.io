@@ -1,83 +1,297 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kavish's Profile</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+
+        .active-nav {
+            background-color: #38bdf8;
+            color: #0f172a;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #334155, transparent);
+            margin: 3rem 0;
+        }
+
+        .project-img-container {
+            width: 100%;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #0f172a;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .project-img-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .img-cover {
+            object-fit: cover !important;
+            width: 100%;
+            height: 100%;
+        }
+
+        .blog-content h1, .blog-content h2, .blog-content h3 { color: #38bdf8; font-weight: bold; margin-top: 1.5rem; }
+        .blog-content p { margin-bottom: 1rem; line-height: 1.8; color: #cbd5e1; }
+        
+        .quote {
+            font-style: italic;
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        .social-link {
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #94a3b8;
+        }
+
+        .social-link:hover {
+            color: #38bdf8;
+            border-color: #38bdf8;
+            background: #0f172a;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
-<body>
-    <div class="content-wrapper">
-        <h1 class="center">Hello 👋 Welcome to My Profile</h1>
-        <p class="center">
-            <img src="https://user-images.githubusercontent.com/74038190/212748830-4c709398-a386-4761-84d7-9e10b98fbe6e.gif" alt="GIF of person typing" loading="lazy" style="display:block; margin:0 auto; max-width: 180px; height: auto;">
-        </p>
-        <p class="center subtle-note">GIF courtesy of <a href="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub" target="_blank" rel="noopener noreferrer">Anmol-Baranwal/Cool-GIFs-For-GitHub</a></p>
-        <hr class="section-divider">
+<body class="selection:bg-sky-500/30">
 
-        <h2 class="center">🐧 &nbsp;About Me</h2>
-        <p class="center">
-            I'm <b>Kavish</b>, a <b>GNU/Linux enthusiast</b> passionate about open-source development, theming, and crafting better desktop experiences. Currently building <b>Niieux</b>, a modern Debian-based GNU/Linux project coming in mid-2026. I also enjoy playing Minecraft and other video games in my free time.
-        </p>
-        <hr class="section-divider">
-
-        <h2 class="center">🚀 &nbsp;Tools I Use</h2>
-        <p class="center">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="linux" width="50" height="50">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="bash" width="50" height="50">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="python" width="50" height="50">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="java" width="50" height="50">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="50" height="50">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg" alt="debian" width="50" height="50">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="git" width="50" height="50">
-        </p>
-        <hr class="section-divider">
-
-        <h2 class="center">🧩 &nbsp;My Projects</h2>
-        <p class="center">
-            <b>Here are some of the projects I'm currently working on or maintaining:</b>
-        </p>
-        <div class="cards-grid">
-            <div class="card">
-                <a href="https://flathub.org/en/apps/io.github.shonubot.Spruce">
-                    <img src="https://raw.githubusercontent.com/shonubot/Spruce/main/data/icons/hicolor/scalable/apps/io.github.shonubot.Spruce.svg" alt="Spruce icon">
-                    <h3>Spruce</h3>
-                </a>
-                <p>A modern, minimal cache cleaner for Linux; fast, safe, and built with GTK 4.</p>
-            </div>
-            <div class="card">
-                <a href="https://github.com/shonubot/SnapStage">
-                    <img src="https://raw.githubusercontent.com/shonubot/SnapStage/main/icon.svg" alt="SnapStage icon">
-                    <h3>SnapStage</h3>
-                </a>
-                <p>Install, cache, and enable Snap packages inside chroot environments, perfect for ISO builders.</p>
-            </div>
-            <div class="card">
-                <a href="https://github.com/shonubot/Whisk">
-                    <img src="https://raw.githubusercontent.com/shonubot/Whisk/main/screenshot.png" alt="Whisk screenshot">
-                    <h3>Whisk</h3>
-                </a>
-                <p>A universal Linux app launcher with Wayland-native support.</p>
+    <nav class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex items-center justify-center space-x-6 py-4">
+                <button id="btn-home" onclick="navigateTo('home')" class="px-5 py-1.5 rounded-md font-semibold transition-all hover:text-sky-400 active-nav">
+                    Home
+                </button>
+                <button id="btn-blog" onclick="navigateTo('blog')" class="px-5 py-1.5 rounded-md font-semibold transition-all hover:text-sky-400">
+                    Blog
+                </button>
             </div>
         </div>
-        <hr class="section-divider">
+    </nav>
 
-        <h2 class="center">📊 &nbsp;Stats & Activity</h2>
-        <p class="center">
-            <img class="stats-img" src="https://github-readme-stats-shonubot.vercel.app/api?username=shonubot&show_icons=true&theme=dark" alt="Kavish's GitHub stats">
-            <br>
-            <img class="stats-img" src="https://github-readme-stats-shonubot.vercel.app/api/top-langs/?username=shonubot&layout=compact&theme=dark" alt="Top languages">
-        </p>
-        <hr class="section-divider">
+    <main class="max-w-4xl mx-auto px-6 py-12">
+        
+        <section id="home" class="section active">
+            <div class="text-center space-y-6">
+                <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white">Hello 👋 Welcome to My Profile</h1>
+                <div class="py-4">
+                    <img src="https://user-images.githubusercontent.com/74038190/212748830-4c709398-a386-4761-84d7-9e10b98fbe6e.gif" alt="Typing GIF" class="mx-auto w-44 rounded-lg shadow-xl shadow-sky-500/10">
+                    <p class="text-xs text-slate-500 mt-4">GIF courtesy of <a href="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub" target="_blank" class="hover:text-sky-400 underline decoration-slate-700">Anmol-Baranwal</a></p>
+                </div>
+                <hr class="section-divider">
+                <div class="space-y-4 max-w-2xl mx-auto">
+                    <h2 class="text-2xl font-bold flex items-center justify-center gap-2 text-white"><span>🐧</span> About Me</h2>
+                    <p class="text-slate-400 leading-relaxed text-lg">I'm <b class="text-sky-400">Kavish</b>, a <b class="text-slate-200">GNU/Linux enthusiast</b> who contributes to open-source development and enjoys playing video games like Minecraft. Currently building <b class="text-sky-400">Niieux</b>, a modern Debian-based GNU/Linux project coming in mid-2026.</p>
+                </div>
+                <hr class="section-divider">
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold flex items-center justify-center gap-2 text-white"><span>🚀</span> Tools I Use</h2>
+                    <div class="flex flex-wrap justify-center gap-6 grayscale hover:grayscale-0 transition-all duration-500">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="linux" class="w-12 h-12" title="Linux">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="bash" class="w-12 h-12" title="Bash">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="python" class="w-12 h-12" title="Python">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="java" class="w-12 h-12" title="Java">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" class="w-12 h-12" title="C++">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg" alt="debian" class="w-12 h-12" title="Debian">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="git" class="w-12 h-12" title="Git">
+                    </div>
+                </div>
+                <hr class="section-divider">
+                <div class="space-y-8">
+                    <h2 class="text-2xl font-bold flex items-center justify-center gap-2 text-white"><span>🧩</span> My Projects</h2>
+                    <p class="text-slate-400 font-medium">Here are some of the projects I'm currently working on or maintaining:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                        <a href="https://flathub.org/en/apps/io.github.shonubot.Spruce" target="_blank" class="card p-6 rounded-xl block group">
+                            <div class="project-img-container"><img src="https://raw.githubusercontent.com/shonubot/Spruce/main/data/icons/hicolor/scalable/apps/io.github.shonubot.Spruce.svg" alt="Spruce"></div>
+                            <h3 class="text-xl font-bold group-hover:text-sky-400 text-white">Spruce</h3>
+                            <p class="text-sm text-slate-400 mt-2">Spruce is a lightweight cache cleaner and system maintenance tool designed for GNU/Linux.</p>
+                        </a>
+                        <a href="https://github.com/shonubot/SnapStage" target="_blank" class="card p-6 rounded-xl block group">
+                            <div class="project-img-container"><img src="https://raw.githubusercontent.com/shonubot/SnapStage/main/icon.svg" alt="SnapStage"></div>
+                            <h3 class="text-xl font-bold group-hover:text-sky-400 text-white">SnapStage</h3>
+                            <p class="text-sm text-slate-400 mt-2">A utility to queue installs and removes of snapd packages.</p>
+                        </a>
+                        <a href="https://github.com/shonubot/Whisk" target="_blank" class="card p-6 rounded-xl block group">
+                            <div class="project-img-container"><img src="https://raw.githubusercontent.com/shonubot/Whisk/main/screenshot.png" class="img-cover" alt="Whisk"></div>
+                            <h3 class="text-xl font-bold group-hover:text-sky-400 text-white">Whisk</h3>
+                            <p class="text-sm text-slate-400 mt-2">A search interface for applications with native support for both GNOME and Wayland.
 
-        <h2 class="center">🌐 &nbsp;Connect</h2>
-        <p class="center connect-links">
-            <a href="https://niieux.com"><img src="https://img.shields.io/badge/_Visit_Niieux.com-1e90ff?style=for-the-badge" alt="Visit Niieux.com"></a>
-            <a href="mailto:kavish@niieux.com"><img src="https://img.shields.io/badge/_Email_Me-555555?style=for-the-badge" alt="Email Me"></a>
-        </p>
-        <hr class="section-divider">
+</p>
+                        </a>
+                    </div>
+                </div>
+                <hr class="section-divider">
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold flex items-center justify-center gap-2 text-white"><span>📊</span> Stats & Activity</h2>
+                    <div class="flex flex-col items-center gap-4">
+                        <img class="stats-img border border-slate-800" src="https://github-readme-stats-shonubot.vercel.app/api?username=shonubot&show_icons=true&theme=dark&bg_color=0f172a&ring_color=38bdf8" alt="GitHub stats">
+                        <img class="stats-img border border-slate-800" src="https://github-readme-stats-shonubot.vercel.app/api/top-langs/?username=shonubot&layout=compact&theme=dark&bg_color=0f172a" alt="Top languages">
+                    </div>
+                </div>
+                <hr class="section-divider">
+                
+                <div class="space-y-8 pb-12">
+                    <h2 class="text-2xl font-bold flex items-center justify-center gap-2 text-white"><span>🌐</span> Connect</h2>
+                    <div class="flex flex-col items-center gap-6">
+                        <div class="flex items-center gap-4">
+                            <a href="https://github.com/shonubot" target="_blank" class="social-link" title="GitHub">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                            </a>
+                            <a href="https://gitlab.com/shonubot" target="_blank" class="social-link" title="GitLab">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 13.29-3.33-10a.42.42 0 0 0-.14-.18.38.38 0 0 0-.22-.11.39.39 0 0 0-.23.07.42.42 0 0 0-.14.18l-2.26 6.67H8.32L6.06 3.27a.42.42 0 0 0-.14-.18.38.38 0 0 0-.22-.11.39.39 0 0 0-.23.07.42.42 0 0 0-.14.18L2 13.29a.74.74 0 0 0 .27.83L12 21l9.73-6.88a.74.74 0 0 0 .27-.83Z"/></svg>
+                            </a>
+                            <a href="https://launchpad.net/~shonubot" target="_blank" class="social-link" title="Launchpad">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 3.5-2 3.5s2.24-.5 3.5-2"/><path d="M15 12V9m3 3V7M12 15h3m-3 3h7"/><path d="M5 15C3 15 2 17 2 19c0 2 2 3 4 3s4-2 4-4c0-2-1-3-3-3Z"/><path d="M12 12 5 15"/><path d="m15 9 7-3"/><path d="M21 2c-1 0-8 0-14 6l-1 1 5 5 1-1c6-6 6-13 6-14Z"/></svg>
+                            </a>
+                        </div>
+                        <a href="mailto:kavish@niieux.com" class="hover:opacity-80 transition">
+                            <img src="https://img.shields.io/badge/_Email_Me-555555?style=for-the-badge" alt="Email Me">
+                        </a>
+                    </div>
+                    <hr class="section-divider">
+                    <p class="quote">“Free as in freedom — not just as in price.”</p>
+                </div>
+            </div>
+        </section>
 
-        <p class="center quote"><i>“Free as in freedom — not just as in price.”</i></p>
-    </div>
+        <section id="blog" class="section">
+            <h1 class="text-4xl font-bold mb-2 text-sky-400">Blog</h1>
+            <p class="text-slate-500 mb-10">Thoughts on Linux, development, and more.</p>
+            <div id="blog-posts-container" class="space-y-6">
+            </div>
+        </section>
+
+        <section id="post-view" class="section">
+            <button onclick="navigateTo('blog')" class="flex items-center gap-2 text-sky-400 hover:text-sky-300 mb-8 font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                Back to Blog
+            </button>
+            <div id="single-post-content" class="blog-content">
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const blogPosts = [
+            {
+                slug: "hello-world",
+                title: "Hello World",
+                date: "Dec 25, 2025",
+                excerpt: "Welcome to my very first test blog post on this profile site.",
+                content: `
+                    <p>This is my first post! </p>
+                    <p>I built this blog section to be data-driven, meaning I just update a JavaScript array and the UI handles the rest.</p>
+                `,
+                tags: ["General", "Welcome", "Test"]
+            }
+        ];
+
+        function renderBlog() {
+            const container = document.getElementById('blog-posts-container');
+            container.innerHTML = blogPosts.map(post => `
+                <div onclick="viewPost('${post.slug}')" class="bg-slate-800/50 border border-slate-800 p-6 rounded-xl hover:border-sky-500/50 transition-all cursor-pointer group">
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        ${post.tags.map(tag => `<span class="text-[10px] font-bold uppercase tracking-widest bg-sky-500/10 text-sky-400 px-2 py-0.5 rounded">${tag}</span>`).join('')}
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2 group-hover:text-sky-400 transition-colors text-white">${post.title}</h2>
+                    <p class="text-slate-500 text-xs mb-3 font-medium uppercase tracking-tighter">${post.date}</p>
+                    <p class="text-slate-400">${post.excerpt}</p>
+                    <div class="mt-4 text-sky-400 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                        Read more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function viewPost(slug) {
+            const post = blogPosts.find(p => p.slug === slug);
+            if (!post) return;
+
+            const container = document.getElementById('single-post-content');
+            container.innerHTML = `
+                <div class="mb-6 text-center md:text-left">
+                    <span class="text-sky-400 font-bold uppercase tracking-widest text-xs">${post.tags.join(' • ')}</span>
+                    <h1 class="text-4xl md:text-5xl font-extrabold mt-2 mb-4 text-white">${post.title}</h1>
+                    <p class="text-slate-500 font-medium">${post.date}</p>
+                </div>
+                <div class="prose prose-invert max-w-none">
+                    ${post.content}
+                </div>
+            `;
+            navigateTo('post-view');
+        }
+
+        function navigateTo(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('nav button').forEach(b => b.classList.remove('active-nav'));
+
+            document.getElementById(sectionId).classList.add('active');
+            
+            if (sectionId === 'home') document.getElementById('btn-home').classList.add('active-nav');
+            if (sectionId === 'blog' || sectionId === 'post-view') document.getElementById('btn-blog').classList.add('active-nav');
+            
+            window.scrollTo(0, 0);
+        }
+
+        window.onload = () => {
+            renderBlog();
+        };
+    </script>
 </body>
 </html>
