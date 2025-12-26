@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -238,11 +237,24 @@
 
     <script>
         const blogPosts = [
+	{
+    slug: "ai-slop-spreading-linux",
+    title: "AI Slop is Spreading to Linux",
+    date: "Dec 26, 2025",
+    excerpt: "AI slop is spreading to Linux...",
+    content: `
+      <p>Recently, I helped port an application to Flatpak. When I checked the source code later, all I saw was AI slop.</p>
+      <p>I have found a lot of AI-generated code in Linux recently, and it is a growing concern. For example, I helped someone port an application to Flatpak, but the source code was clearly AI-generated; it contained comments like <code>// Belt-and-suspenders</code> and functions like <code>replaceWithYourFunctionName()</code>. When I asked the developer to consider making a <code>.desktop</code> or metainfo file, he didn't know what they were. Furthermore, the application was a wrapper for a website, and he used the website's trademarked name as the app name, which was not allowed.</p>
+      <p>When he mentioned wanting to put it on Flathub, I advised him to change the name, but he never replied. I later checked his GitHub and saw he had forked the Flathub repository incorrectly. He forked it with the "Copy the master branch" option checked which Flathub guidelines specifically don't allow and created a branch from <code>master</code> instead of <code>new-pr</code>. He then uploaded the manifest alongside the README without following any submission guidelines. This isn't an isolated case; I have noticed many new PRs on Flathub and the GNOME Extensions page are becoming filled with AI-generated slop.</p>
+      <p>AI is a good tool when used correctly. For example, I drafted the idea for the Spruce application with AI, but I wrote the majority of the code myself. AI should be a helper, not a replacement for writing the entire application. Many "vibe coders" claim programming is too difficult, but it isn't. I learned Python, C, and C++ at age 10, with the right tools, anyone can learn. On the bright side, Flathub has added a policy against AI slop, and I hope other platforms follow.</p>
+    `,
+    tags: ["Linux", "AI", "Rant"]
+            },
             {
                 slug: "hello-world",
                 title: "Hello World",
                 date: "Dec 25, 2025",
-                excerpt: "Welcome to my very first test blog post on this profile site.",
+                excerpt: "A test blog post.",
                 content: `
                     <p>This is my first post! </p>
                     <p>I built this blog section to be data-driven, meaning I just update a JavaScript array and the UI handles the rest.</p>
