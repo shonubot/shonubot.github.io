@@ -229,6 +229,19 @@
     <script>
         const blogPosts = [
             {
+                slug: "flatpak-vs-traditional-packages",
+                title: "Flatpak vs Traditional packages",
+                date: "Jan 5, 2026",
+                excerpt: "Flatpak vs Traditional packages",
+                content: `
+                    <p>Just recently, Flathub has announced that total app growth has increased by 21.6% which is a huge improvement, however Flatpak is still very controversal for many reasons. </p>
+                    <p>Flatpaks usually use more disk space than traditional system packages. This is because they operate in a sandboxed, isolated environment and bundle most of their dependencies within shared "runtimes" instead of relying on the libraries installed on the host system. While multiple Flatpaks can share the same runtime, an application might require a specific version of a library, leading to the installation of another, separate runtime version. This means the initial storage overhead for a few applications can be a lot.</p>
+                    <p>Another advantage with Flatpak is its sandboxing, which limits each application's access to the host system, for example, preventing a media player from modifying sensitive files. This default restriction boosts security but can cause issues for apps requiring broad access, like development tools or browsers, which often use their own internal sandboxes forcing them to use portals or specific overrides for full functionality and even then, they often have issues. For example, the Google Chrome Flatpak is known for having bugs like broken camera detection, drag and drop issues, hardware acceleration issues and many more.</p>
+                    <p>Ultimately, choosing between Flatpak and traditional packages comes down to whether you prioritize the security of a sandbox or the stability of native system integration.</p>
+                `,
+                tags: ["Linux", "AI", "Rant"]
+            },
+			{
                 slug: "ai-slop-spreading-linux",
                 title: "AI Slop is Spreading to Linux",
                 date: "Dec 26, 2025",
