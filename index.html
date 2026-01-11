@@ -215,6 +215,18 @@
 
     <script>
         const blogPosts = [
+			{
+			  "slug": "linux-home-directory-evolution",
+			  "title": "Evolution of the Linux Home Directory Structure",
+			  "date": "Jan 11, 2026",
+			  "excerpt": "While the XDG standard aims to organize user directories, modern package formats have introduced new complexities to file management.",
+			  "content": ` 
+			  <p>The structure of the Linux home directory has changed significantly over the last decade. The XDG Base Directory Specifications encouraged placing configurations in <code>~/.config</code> and data in <code>~/.local/share</code>. However, the adoption of isolated package formats has introduced a more fragmented layout.</p> 
+			  <p>Users who use a combination of native packages, Flatpaks, and Snaps will find data distributed across <code>~/.config</code>, <code>~/.var/app</code>, and <code>~/snap</code>. This distribution changes the approach required for manual backups, as configuration files are no longer in a single location.</p> 
+			  <p>Additionally, some modern applications and CLI tools do not follow XDG standards. This can lead to persistent data remaining after an application is uninstalled. While sandboxing provides significant security benefits, it also results in a varied filesystem structure that requires different maintenance workflows than traditional system packages.</p>
+			  `,
+			  "tags": ["Linux", "XDG", "Flatpak", "Snap", "System-Administration"]
+			},
             {
                 slug: "flatpak-vs-traditional-packages",
                 title: "Flatpak vs Traditional packages",
