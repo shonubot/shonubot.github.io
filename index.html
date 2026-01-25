@@ -103,6 +103,26 @@
             background: #262626;
             margin: 2.5rem 0;
         }
+
+        .pagination-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            background: #111111;
+            border: 1px solid #262626;
+            color: #a3a3a3;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            border-color: #60a5fa;
+            color: #60a5fa;
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -175,6 +195,11 @@
             </div>
             <div id="blog-posts-container" class="space-y-4">
             </div>
+            <div id="pagination-controls" class="flex items-center justify-between mt-6">
+                <button id="prev-btn" class="pagination-btn">← Previous</button>
+                <span id="page-info" class="text-gray-400 text-sm"></span>
+                <button id="next-btn" class="pagination-btn">Next →</button>
+            </div>
         </section>
 
         <section id="post-view" class="section">
@@ -242,9 +267,16 @@
             }
         ];
 
+        let currentPage = 1;
+        const postsPerPage = 3;
+
         function renderBlog() {
             const container = document.getElementById('blog-posts-container');
-            container.innerHTML = blogPosts.map(post => `
+            const startIndex = (currentPage - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+            const postsToShow = blogPosts.slice(startIndex, endIndex);
+            
+            container.innerHTML = postsToShow.map(post => `
                 <a href="#${post.slug}" class="block bg-neutral-900 border border-gray-800 p-5 rounded-lg hover:border-blue-400 transition-colors cursor-pointer">
                     <div class="flex flex-wrap gap-2 mb-2">
                         ${post.tags.map(tag => `<span class="text-xs text-gray-500">${tag}</span>`).join(' · ')}
@@ -254,6 +286,36 @@
                     <p class="text-gray-400">${post.excerpt}</p>
                 </a>
             `).join('');
+            
+            updatePaginationControls();
+        }
+
+        function updatePaginationControls() {
+            const totalPages = Math.ceil(blogPosts.length / postsPerPage);
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const pageInfo = document.getElementById('page-info');
+            
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+            pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+        }
+
+        function nextPage() {
+            const totalPages = Math.ceil(blogPosts.length / postsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderBlog();
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderBlog();
+                window.scrollTo(0, 0);
+            }
         }
 
         function viewPost(slug) {
@@ -308,6 +370,9 @@
         window.onload = () => {
             renderBlog();
             handleRoute();
+            
+            document.getElementById('next-btn').addEventListener('click', nextPage);
+            document.getElementById('prev-btn').addEventListener('click', prevPage);
         };
     </script>
 </body>
