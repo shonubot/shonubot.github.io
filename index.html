@@ -267,8 +267,8 @@
             
             container.innerHTML = postsToShow.map(post => `
                 <a href="#${post.slug}" class="block bg-neutral-900 border border-gray-800 p-5 rounded-lg hover:border-blue-400 transition-colors cursor-pointer">
-                    <div class="flex flex-wrap gap-2 mb-2">
-                        ${post.tags.map(tag => `<span class="text-xs text-gray-500">${tag}</span>`).join(' · ')}
+                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                        ${post.tags.map(tag => `<span class="text-xs text-gray-500">${tag}</span>`).join('<span class="text-gray-500">·</span>')}
                     </div>
                     <h2 class="text-xl font-medium mb-1">${post.title}</h2>
                     <p class="text-gray-500 text-sm mb-2">${post.date}</p>
@@ -314,8 +314,8 @@
             const container = document.getElementById('single-post-content');
             container.innerHTML = `
                 <div class="mb-8">
-                    <div class="text-gray-500 text-sm mb-2">${post.tags.join(' · ')}</div>
-                    <h1 class="text-3xl font-semibold mb-2">${post.title}</h1>
+                    <div class="text-gray-500 text-sm mb-2 flex flex-wrap items-center gap-2">${post.tags.map(tag => `<span>${tag}</span>`).join('<span>·</span>')}</div>
+                    <h1 class="text-3xl font-semold mb-2">${post.title}</h1>
                     <p class="text-gray-500">${post.date}</p>
                 </div>
                 <div class="prose max-w-none">
