@@ -61,24 +61,6 @@
             height: 100%;
         }
 
-        .blog-content h1, .blog-content h2, .blog-content h3 { 
-            color: #e5e5e5; 
-            font-weight: 600; 
-            margin-top: 1.5rem; 
-        }
-        .blog-content p { 
-            margin-bottom: 1rem; 
-            line-height: 1.7; 
-            color: #a3a3a3; 
-        }
-        .blog-content code {
-            background: #1a1a1a;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 0.9em;
-            color: #d4d4d4;
-        }
-
         .social-link {
             transition: all 0.2s;
             display: flex;
@@ -104,25 +86,6 @@
             margin: 2.5rem 0;
         }
 
-        .pagination-btn {
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            background: #111111;
-            border: 1px solid #262626;
-            color: #a3a3a3;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .pagination-btn:hover:not(:disabled) {
-            border-color: #60a5fa;
-            color: #60a5fa;
-        }
-
-        .pagination-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
     </style>
 </head>
 <body>
@@ -132,9 +95,6 @@
             <div class="flex items-center justify-center space-x-8 py-4">
                 <a href="#home" id="btn-home" class="pb-1 font-medium transition-colors active-nav">
                     Home
-                </a>
-                <a href="#blog" id="btn-blog" class="pb-1 font-medium transition-colors text-gray-500 hover:text-gray-300">
-                    Blog
                 </a>
             </div>
         </div>
@@ -188,143 +148,9 @@
             </div>
         </section>
 
-        <section id="blog" class="section">
-            <div class="mb-8">
-                <h1 class="text-3xl font-semibold mb-2">Blog</h1>
-                <p class="text-gray-400">Thoughts on Linux, development, and more.</p>
-            </div>
-            <div id="blog-posts-container" class="space-y-4">
-            </div>
-            <div id="pagination-controls" class="flex items-center justify-between mt-6">
-                <button id="prev-btn" class="pagination-btn">← Previous</button>
-                <span id="page-info" class="text-gray-400 text-sm"></span>
-                <button id="next-btn" class="pagination-btn">Next →</button>
-            </div>
-        </section>
-
-        <section id="post-view" class="section">
-            <a href="#blog" class="flex items-center gap-1 text-blue-400 hover:text-blue-300 mb-8 font-medium">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                Back to Blog
-            </a>
-            <div id="single-post-content" class="blog-content">
-            </div>
-        </section>
-
     </main>
 
     <script>
-        const blogPosts = [
-			{
-			  "slug": "linux-underrated-utils",
-			  "title": "5 Underrated Linux CLI tools",
-			  "date": "Jan 25, 2026",
-			  "excerpt": "",
-			  "content": ` 
-			  <p>5. <code>ripgrep</code>: Like GNU GREP but faster for recursive searches and respects <code>.gitignore</code>, <code>.ignore</code>, and <code>.rgignore</code> files. </p> 
-			  <p>4. <code>debuild</code>: Essentially a wrapper script that runs <code>dpkg-buildpackage</code> but also runs <code>lintian</code>, <code>debsign</code> and <code>fakeroot</code>, ensuring that a built Debian package follows the Debian policy requirements.</p> 
-			  <p>3. <code>gh</code>: The official GitHub CLI utility, it allows you to interact with the GitHub API directly in your terminal without opening your web browser and is very useful for finishing tasks on GitHub significantly faster.</p>	
-			  <p>2. <code>awk</code>: A powerful text-processing and pattern-scanning language that operates on a line-by-line basis.</p>
-			  <p>1. <code>xorriso</code>: Probably not useful for most people. A Linux command-line tool used to create, load and write ISO 9660 filesystem images (<code>.iso</code>).</p>
-			  `,
-			  "tags": ["Linux", "Underrated", "System-Administration"]
-			},
-			{
-			  "slug": "linux-home-directory-evolution",
-			  "title": "Evolution of the Linux Home Directory Structure",
-			  "date": "Jan 11, 2026",
-			  "excerpt": "While the XDG standard aims to organize user directories, modern package formats have introduced new complexities to file management.",
-			  "content": ` 
-			  <p>The structure of the Linux home directory has changed significantly over the last decade. The XDG Base Directory Specifications encouraged placing configurations in <code>~/.config</code> and data in <code>~/.local/share</code>. However, the adoption of isolated package formats has introduced a more fragmented layout.</p> 
-			  <p>Users who use a combination of native packages, Flatpaks, and Snaps will find data distributed across <code>~/.config</code>, <code>~/.var/app</code>, and <code>~/snap</code>. This distribution changes the approach required for manual backups, as configuration files are no longer in a single location.</p> 
-			  <p>Additionally, some modern applications and CLI tools do not follow XDG standards. This can lead to persistent data remaining after an application is uninstalled. While sandboxing provides significant security benefits, it also results in a varied filesystem structure that requires different maintenance workflows than traditional system packages.</p>
-			  `,
-			  "tags": ["Linux", "XDG", "Flatpak", "Snap", "System-Administration"]
-			},
-            {
-                slug: "flatpak-vs-traditional-packages",
-                title: "Flatpak vs Traditional packages",
-                date: "Jan 5, 2026",
-                excerpt: "Flatpak vs Traditional packages",
-                content: `
-                    <p>Just recently, Flathub has announced that total app growth has increased by 21.6% which is a huge improvement, however Flatpak is still very controversal for many reasons. </p>
-                    <p>Flatpaks usually use more disk space than traditional system packages. This is because they operate in a sandboxed, isolated environment and bundle most of their dependencies within shared "runtimes" instead of relying on the libraries installed on the host system. While multiple Flatpaks can share the same runtime, an application might require a specific version of a library, leading to the installation of another, separate runtime version. This means the initial storage overhead for a few applications can be a lot.</p>
-                    <p>Another advantage with Flatpak is its sandboxing, which limits each application's access to the host system, for example, preventing a media player from modifying sensitive files. This default restriction boosts security but can cause issues for apps requiring broad access, like development tools or browsers, which often use their own internal sandboxes forcing them to use portals or specific overrides for full functionality and even then, they often have issues. For example, the Google Chrome Flatpak is known for having bugs like broken camera detection, drag and drop issues, hardware acceleration issues and many more.</p>
-                    <p>Ultimately, choosing between Flatpak and traditional packages comes down to whether you prioritize the security of a sandbox or the stability of native system integration.</p>
-                `,
-                tags: ["Linux", "Flatpak", "Packages"]
-            }
-        ];
-
-        let currentPage = 1;
-        const postsPerPage = 3;
-
-        function renderBlog() {
-            const container = document.getElementById('blog-posts-container');
-            const startIndex = (currentPage - 1) * postsPerPage;
-            const endIndex = startIndex + postsPerPage;
-            const postsToShow = blogPosts.slice(startIndex, endIndex);
-            
-            container.innerHTML = postsToShow.map(post => `
-                <a href="#${post.slug}" class="block bg-neutral-900 border border-gray-800 p-5 rounded-lg hover:border-blue-400 transition-colors cursor-pointer">
-                    <div class="flex flex-wrap items-center gap-2 mb-2">
-                        ${post.tags.map(tag => `<span class="text-xs text-gray-500">${tag}</span>`).join('<span class="text-gray-500">·</span>')}
-                    </div>
-                    <h2 class="text-xl font-medium mb-1">${post.title}</h2>
-                    <p class="text-gray-500 text-sm mb-2">${post.date}</p>
-                    <p class="text-gray-400">${post.excerpt}</p>
-                </a>
-            `).join('');
-            
-            updatePaginationControls();
-        }
-
-        function updatePaginationControls() {
-            const totalPages = Math.ceil(blogPosts.length / postsPerPage);
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            const pageInfo = document.getElementById('page-info');
-            
-            prevBtn.disabled = currentPage === 1;
-            nextBtn.disabled = currentPage === totalPages;
-            pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-        }
-
-        function nextPage() {
-            const totalPages = Math.ceil(blogPosts.length / postsPerPage);
-            if (currentPage < totalPages) {
-                currentPage++;
-                renderBlog();
-                window.scrollTo(0, 0);
-            }
-        }
-
-        function prevPage() {
-            if (currentPage > 1) {
-                currentPage--;
-                renderBlog();
-                window.scrollTo(0, 0);
-            }
-        }
-
-        function viewPost(slug) {
-            const post = blogPosts.find(p => p.slug === slug);
-            if (!post) return;
-
-            const container = document.getElementById('single-post-content');
-            container.innerHTML = `
-                <div class="mb-8">
-                    <div class="text-gray-500 text-sm mb-2 flex flex-wrap items-center gap-2">${post.tags.map(tag => `<span>${tag}</span>`).join('<span>·</span>')}</div>
-                    <h1 class="text-3xl font-semold mb-2">${post.title}</h1>
-                    <p class="text-gray-500">${post.date}</p>
-                </div>
-                <div class="prose max-w-none">
-                    ${post.content}
-                </div>
-            `;
-            navigateTo('post-view');
-        }
-
         function navigateTo(sectionId) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('nav a').forEach(b => b.classList.remove('active-nav'));
@@ -332,7 +158,6 @@
             document.getElementById(sectionId).classList.add('active');
             
             if (sectionId === 'home') document.getElementById('btn-home').classList.add('active-nav');
-            if (sectionId === 'blog' || sectionId === 'post-view') document.getElementById('btn-blog').classList.add('active-nav');
             
             window.scrollTo(0, 0);
         }
@@ -342,26 +167,15 @@
             
             if (hash === 'home') {
                 navigateTo('home');
-            } else if (hash === 'blog') {
-                navigateTo('blog');
             } else {
-                const post = blogPosts.find(p => p.slug === hash);
-                if (post) {
-                    viewPost(hash);
-                } else {
-                    navigateTo('home');
-                }
+                navigateTo('home');
             }
         }
 
         window.addEventListener('hashchange', handleRoute);
 
         window.onload = () => {
-            renderBlog();
             handleRoute();
-            
-            document.getElementById('next-btn').addEventListener('click', nextPage);
-            document.getElementById('prev-btn').addEventListener('click', prevPage);
         };
     </script>
 </body>
